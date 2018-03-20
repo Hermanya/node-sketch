@@ -64,7 +64,7 @@ class Sketch {
      * @return {this}
      */
     use(plugin) {
-        this.queue.then(() => plugin.run(this));
+        this.queue = this.queue.then(() => plugin.run(this));
 
         return this;
     }
@@ -82,7 +82,7 @@ class Sketch {
      * @return {this}
      */
     save(file) {
-        this.queue.then(() => {
+        this.queue = this.queue.then(() => {
             const pagesFolder = this.repo.folder('pages');
 
             this.document.pages = this.pages.map(page => {
